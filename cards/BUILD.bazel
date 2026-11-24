@@ -1,0 +1,10 @@
+load("@typst-bazel//typst:defs.bzl", "typst_library")
+
+exports_files(["card.typ"])
+
+typst_library(
+    name = "card",
+    srcs = ["card.typ"],
+    fonts = ["@jetbrains_mono_extrabold//file"],
+    visibility = ["//visibility:public"],
+)

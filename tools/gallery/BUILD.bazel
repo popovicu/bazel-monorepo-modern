@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "gallery_lib",
+    srcs = ["gallery.go"],
+    importpath = "github.com/popovicu/bazel-monorepo-modern/tools/gallery",
+)
+
+go_binary(
+    name = "gallery",
+    srcs = ["main.go"],
+    visibility = ["//visibility:public"],
+    deps = [":gallery_lib"],
+)
+
+go_test(
+    name = "gallery_test",
+    srcs = ["gallery_test.go"],
+    embed = [":gallery_lib"],
+    deps = ["@com_github_google_go_cmp//cmp"],
+)

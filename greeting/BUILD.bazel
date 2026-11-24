@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "greeting",
+    srcs = ["greeting.go"],
+    importpath = "github.com/popovicu/bazel-monorepo-modern/greeting",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "greeting_test",
+    srcs = ["greeting_test.go"],
+    embed = [":greeting"],
+)

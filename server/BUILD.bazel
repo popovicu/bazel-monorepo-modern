@@ -1,0 +1,38 @@
+load("@rules_go//go:def.bzl", "go_binary")
+load("//rules:cards.bzl", "card")
+load("//rules:gallery.bzl", "gallery")
+
+card(
+    name = "hello_world",
+    message = "Hello world Bazel!",
+)
+
+card(
+    name = "foo",
+    message = "This is foo!",
+)
+
+card(
+    name = "bar",
+    message = "This is bar!",
+)
+
+gallery(
+    name = "index",
+    images = [
+        ":hello_world",
+        ":foo",
+        ":bar",
+    ],
+)
+
+go_binary(
+    name = "server",
+    srcs = ["main.go"],
+    embedsrcs = [
+        ":hello_world",
+        ":foo",
+        ":bar",
+        ":index",
+    ],
+)
